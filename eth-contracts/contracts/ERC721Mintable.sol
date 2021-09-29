@@ -66,23 +66,22 @@ contract Pausable is Ownable {
     bool private _paused;
 
     // Paused and Unpaused Event
-    event Paused (address indexed personPaused);
-    event Unpaused (address indexed personUnpaused);
+    event Paused (address personPaused);
+    event Unpaused (address personUnpaused);
 
     constructor () internal {
         _paused = false;
-        emit whenNotPaused(msg.sender);
     }
 
     // Paused modifier
     modifier Paused() {
-        require(isPaused());
+        require(isPaused(),"Pausable: not paused");
         _;
     }
 
     // whenNotPaused modifier
     modifier whenNotPaused() {
-        require(!isPaused());
+        require(!isPaused(),"Pausable: paused");
         _;
     }
 
@@ -91,17 +90,18 @@ contract Pausable is Ownable {
         return _paused;
     }
 
-    // pause set function
-    function pause(bool status) public onlyOwner {
-        require(_paused != status, "Same Status Value");
+    // pause function
+    function pause() public whenNotPaused onlyOwner {
         _paused = status;
-        if(_paused){
-            emit Paused(msg.sender);
-        }
-        else {
-            emit whenNotPaused(msg.sender);
-        }
+        emit Paused(msg.sender);
     }
+
+    // unpause function
+    function unpause() internal virtual Paused onlyOwner {
+        _paused = false;
+        emit Unpaused(_msgSender());
+    }
+
 }
 
 contract ERC165 {
@@ -181,6 +181,7 @@ contract ERC721 is Pausable, ERC165 {
     function balanceOf(address owner) public view returns (uint256) {
         // TODO return the token balance of given address
         // TIP: remember the functions to use for Counters. you can refresh yourself with the link above
+        return _ownedTokensCount[owner].current();
     }
 
     function ownerOf(uint256 tokenId) public view returns (address) {
