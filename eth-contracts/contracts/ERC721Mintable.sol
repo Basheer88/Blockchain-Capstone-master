@@ -30,6 +30,11 @@ contract Ownable {
         _;
     }
 
+    /// Check if the calling address is the owner of the contract
+    function isOwner() public view returns (bool) {
+        return msg.sender == origOwner;
+    }
+
     // get owner address
     function owner() public view returns (address) {
         return origOwner;
@@ -55,6 +60,49 @@ contract Ownable {
 //  3) create an internal constructor that sets the _paused variable to false
 //  4) create 'whenNotPaused' & 'paused' modifier that throws in the appropriate situation
 //  5) create a Paused & Unpaused event that emits the address that triggered the event
+
+contract Pausable is Ownable {
+    
+    bool private _paused;
+
+    // Paused and Unpaused Event
+    event Paused (address indexed personPaused);
+    event Unpaused (address indexed personUnpaused);
+
+    constructor () internal {
+        _paused = false;
+        emit whenNotPaused(msg.sender);
+    }
+
+    // Paused modifier
+    modifier Paused() {
+        require(isPaused());
+        _;
+    }
+
+    // whenNotPaused modifier
+    modifier whenNotPaused() {
+        require(!isPaused());
+        _;
+    }
+
+    /// Check if the contract is Paused
+    function isPaused() public view returns (bool) {
+        return _paused;
+    }
+
+    // pause set function
+    function pause(bool status) public onlyOwner {
+        require(_paused != status, "Same Status Value");
+        _paused = status;
+        if(_paused){
+            emit Paused(msg.sender);
+        }
+        else {
+            emit whenNotPaused(msg.sender);
+        }
+    }
+}
 
 contract ERC165 {
     bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
