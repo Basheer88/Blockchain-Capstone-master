@@ -14,10 +14,38 @@ contract Ownable {
     //  4) fill out the transferOwnership function
     //  5) create an event that emits anytime ownerShip is transfered (including in the constructor)
 
+    address private origOwner;
+
+    // Transfer ownership Event
+    event TransferOwnership(address indexed oldOwner, address indexed newOwner);
+
+    constructor () internal {
+        origOwner = msg.sender;
+        emit TransferOwnership(address(0), origOwner);
+    }
+
+    // 'onlyOwner' modifier
+    modifier onlyOwner() {
+        require(isOwner());
+        _;
+    }
+
+    // get owner address
+    function owner() public view returns (address) {
+        return origOwner;
+    }
+
     function transferOwnership(address newOwner) public onlyOwner {
         // TODO add functionality to transfer control of the contract to a newOwner.
         // make sure the new owner is a real address
-
+        _transferOwnership(newOwner);
+    }
+    
+    /// An internal function to transfer ownership
+    function _transferOwnership(address newOwner) internal {
+        require(newOwner != address(0));
+        emit TransferOwnership(origOwner, newOwner);
+        origOwner = newOwner;
     }
 }
 
