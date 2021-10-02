@@ -16,7 +16,7 @@ contract SolnSquareVerifier is CustomERC721Token {
     // TODO define a solutions struct that can hold an index & an address
     struct solutions {
         uint256 index;
-        address add;
+        address Address;
     }
 
     // TODO define an array of the above struct
@@ -34,7 +34,12 @@ contract SolnSquareVerifier is CustomERC721Token {
 
 
     // TODO Create a function to add the solutions to the array and emit the event
-    function add(uint256 recievedIndex, address recievedAddress) public {
+    function addSolution(
+                            uint256 recievedIndex,
+                            address recievedAddress
+                        )
+                        public
+    {
         sol[counter] = solutions(recievedIndex, recievedAddress);
         store[msg.sender] = solutions(recievedIndex, recievedAddress);
         counter++;
@@ -45,12 +50,21 @@ contract SolnSquareVerifier is CustomERC721Token {
     // TODO Create a function to mint new NFT only after the solution has been verified
     //  - make sure the solution is unique (has not been used before)
     //  - make sure you handle metadata as well as tokenSuplly
-    function mint(string name, string symbol) public {
-
-
+    function newMint(
+                        uint[2] memory a,
+                        uint[2][2] memory b,
+                        uint[2] memory c,
+                        uint[2] memory input,
+                        uint256 tokenId
+                    )
+                    public
+    {
+        require(store[msg.sender].Address == address(0), "The solution is not unique");
+        require(verifier.verifyTx(a, b, c, input),"Verification failed");
+        addSolution(tokenId, msg.sender);
+        super._mint(msg.sender, tokenId);
     }
   
-
 }
 
 
