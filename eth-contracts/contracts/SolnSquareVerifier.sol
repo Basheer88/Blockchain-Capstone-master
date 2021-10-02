@@ -39,11 +39,13 @@ contract SolnSquareVerifier is CustomERC721Token {
                             address recievedAddress
                         )
                         public
+                        returns(bool)
     {
         sol[counter] = solutions(recievedIndex, recievedAddress);
         store[msg.sender] = solutions(recievedIndex, recievedAddress);
         counter++;
         emit Added(recievedIndex, recievedAddress);
+        return true;
     }
 
 
@@ -58,11 +60,13 @@ contract SolnSquareVerifier is CustomERC721Token {
                         uint256 tokenId
                     )
                     public
+                    returns(bool)
     {
         require(store[msg.sender].Address == address(0), "The solution is not unique");
         require(verifier.verifyTx(a, b, c, input),"Verification failed");
         addSolution(tokenId, msg.sender);
         super._mint(msg.sender, tokenId);
+        return true;
     }
   
 }
