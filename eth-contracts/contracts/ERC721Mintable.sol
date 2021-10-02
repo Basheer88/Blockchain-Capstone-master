@@ -544,6 +544,7 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
         return _baseTokenURI;
     }
 
+    // return token URI
     function tokenURI(uint256 tokenId) external view returns (string memory) {
         require(_exists(tokenId));
         return _tokenURIs[tokenId];
@@ -574,10 +575,10 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 
 contract CustomERC721Token is ERC721Metadata("BashTO", "BT", "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/") {
 
-    function mint(address to, uint256 tokenID, string tokenURI) public onlyOwner returns(bool){
+    //function mint(address to, uint256 tokenID, string tokenURI) public onlyOwner {
+    function mint(address to, uint256 tokenID) public onlyOwner {
         super._mint(to, tokenId);
         setTokenURI(tokenID);
-        return true;
     }
 
 }
