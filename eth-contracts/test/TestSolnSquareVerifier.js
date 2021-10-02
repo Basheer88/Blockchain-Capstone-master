@@ -15,16 +15,16 @@ let proof = {
 }
 
 // Test if a new solution can be added for contract - SolnSquareVerifier
-it('correct proof verification test', async function () {
+it('New solution can be added for contract', async function () {
     let instance = await SolnSquareVerifier.deployed();
-    result = await instance.newMint(proof.a, proof.b, proof.c, proof.input, 1, {from: owner});
-    //assert.equal(result, false, "Proofing with correct proof Failed");
+    result = await instance.addSolution(1, owner, {from: owner});
+    assert.equal(result, true, "Add solutions Failed");
 })
 
 
 // Test if an ERC721 token can be minted for contract - SolnSquareVerifier
-it('correct proof verification test', async function () {
+it('ERC721 token can be minted for contract', async function () {
     let instance = await SolnSquareVerifier.deployed();
-    result = await instance.newMint(proof.a, proof.b, proof.c, proof.input, 1, {from: owner});
-    //assert.equal(result, false, "Proofing with correct proof Failed");
+    result = await instance.newMint(proof.a, proof.b, proof.c, proof.input, 2, {from: owner});
+    assert.equal(result, true, "token minted Failed");
 })
