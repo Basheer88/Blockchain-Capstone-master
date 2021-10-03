@@ -205,7 +205,7 @@ contract ERC721 is Pausable, ERC165 {
 
     function getApproved(uint256 tokenId) public view returns (address) {
         // TODO return token approval if it exists
-        require(_tokenApprovals[tokenId], "token approval doesnot exists");
+        //require(_tokenApprovals[tokenId], "token approval doesnot exists");
         //require(_exists(tokenId), "token approval doesnot exists");
         return _tokenApprovals[tokenId];
     }
@@ -296,7 +296,7 @@ contract ERC721 is Pausable, ERC165 {
         _ownedTokensCount[from].decrement();
         _tokenOwner[tokenId] = to;
         _ownedTokensCount[to].increment();
-        approve(to, tokenId);
+        //approve(to, tokenId);
         // TODO: emit correct event
         emit Transfer(from, to, tokenId);
     }
