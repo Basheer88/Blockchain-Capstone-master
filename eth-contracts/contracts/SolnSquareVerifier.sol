@@ -1,18 +1,19 @@
 pragma solidity >=0.4.21 <0.6.0;
 
 // TODO define a contract call to the zokrates generated solidity contract <Verifier> or <renamedVerifier>
+import './Verifier.sol';
 import './ERC721Mintable.sol';
-import './verifier.sol';
 
 
 // TODO define another contract named SolnSquareVerifier that inherits from your ERC721Mintable class
-contract SolnSquareVerifier is CustomERC721Token {
+contract SolnSquareVerifier is CustomERC721Token, Verifier {
 
+/*
     constructor(address verifierAddress, string memory name, string memory symbol) CustomERC721Token(name, symbol) public 
     {
-        verifierContract = verifier(verifierAddress);
+        verifierContract = Verifier(verifierAddress);
     }
-
+*/
     // TODO define a solutions struct that can hold an index & an address
     struct solutions {
         uint256 index;
@@ -63,7 +64,7 @@ contract SolnSquareVerifier is CustomERC721Token {
                     returns(bool)
     {
         require(store[msg.sender].Address == address(0), "The solution is not unique");
-        require(verifier.verifyTx(a, b, c, input),"Verification failed");
+        require(verifyTx(a, b, c, input),"Verification failed");
         addSolution(tokenId, msg.sender);
         super._mint(msg.sender, tokenId);
         return true;

@@ -17,3 +17,5 @@ The capstone will build upon the knowledge you have gained in the course in orde
 
 docker run -v E:\Blockchain-Capstone-master\zokrates\code:/home/zokrates/code -ti zokrates/zokrates:0.4.6 /bin/bash
 
+npm install --save  openzeppelin-solidity@2.2
+

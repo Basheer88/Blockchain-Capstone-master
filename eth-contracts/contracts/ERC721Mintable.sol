@@ -73,8 +73,8 @@ contract Pausable is Ownable {
         _paused = false;
     }
 
-    // Paused modifier
-    modifier Paused() {
+    // whenPaused modifier
+    modifier whenPaused() {
         require(isPaused(),"Pausable: not paused");
         _;
     }
@@ -92,14 +92,14 @@ contract Pausable is Ownable {
 
     // pause function
     function pause() public whenNotPaused onlyOwner {
-        _paused = status;
+        _paused = true;
         emit Paused(msg.sender);
     }
 
     // unpause function
-    function unpause() internal virtual Paused onlyOwner {
+    function unpause() internal whenPaused onlyOwner {
         _paused = false;
-        emit Unpaused(_msgSender());
+        emit Unpaused(msg.sender);
     }
 
 }
@@ -559,7 +559,7 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
         // see https://github.com/oraclize/ethereum-api/blob/master/oraclizeAPI_0.5.sol for strConcat()
     // require the token exists before setting
     function setTokenURI(uint256 tokenID) internal {
-        require(_exists(tokenId), "tokenID doesnt exists");
+        require(_exists(tokenID), "tokenID doesnt exists");
         _tokenURIs[tokenID] = strConcat(_baseTokenURI, uint2str(tokenID));
     }
 }
@@ -576,9 +576,10 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 contract CustomERC721Token is ERC721Metadata("BashTO", "BT", "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/") {
 
     //function mint(address to, uint256 tokenID, string tokenURI) public onlyOwner {
-    function mint(address to, uint256 tokenID) public onlyOwner {
-        super._mint(to, tokenId);
+    function mint(address to, uint256 tokenID) public onlyOwner returns(bool) {
+        super._mint(to, tokenID);
         setTokenURI(tokenID);
+        return true;
     }
 
 }

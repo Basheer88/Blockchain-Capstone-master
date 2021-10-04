@@ -18,7 +18,7 @@ contract('TestERC721Mintable', accounts => {
         })
 
         it('should return total supply', async function () { 
-            let total = this.contract.totalSupply.call();
+            let total = this.contract.totalSupply();
             assert.equal(total, 5, "Returned Zero total supply");
         })
 
@@ -29,13 +29,13 @@ contract('TestERC721Mintable', accounts => {
 
         // token uri should be complete i.e: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1
         it('should return token uri', async function () { 
-            let uri = this.contract.tokenURI.call(1);
+            let uri = this.contract.tokenURI(1);
             assert.equal(uri, "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1", "Different URI");
         })
 
         it('should transfer token from one owner to another', async function () { 
             await this.contract.transferFrom(account_one, account_two , 3, {from: account_one});
-            let owner = this.contract.ownerOf.call(3);
+            let owner = this.contract.ownerOf(3);
             assert.equal(owner, account_two, "wrong owner");
         })
     });
