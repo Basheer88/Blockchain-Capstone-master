@@ -75,8 +75,8 @@ module.exports = {
     rinkeby: {
        provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${infuraKey}`),
        network_id: 4,       // Rinkeby's id
-       gas: 4500000,        // Rinkeby has a lower block limit than mainnet
-       gasPrice: 10000000000
+       gas: 20000000000,        // Rinkeby has a lower block limit than mainnet
+       gasPrice: 30000000000
     }
   
     // Useful for private networks
