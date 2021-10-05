@@ -8,10 +8,13 @@ import './ERC721Mintable.sol';
 // TODO define another contract named SolnSquareVerifier that inherits from your ERC721Mintable class
 contract SolnSquareVerifier is CustomERC721Token, Verifier {
 
-    constructor() public 
+    constructor(address verifierAddress) public 
     {
-        counter = 0;
+        verifier = Verifier(verifierAddress);
     }
+
+    // 
+    Verifier private verifier;
 
     // TODO define a solutions struct that can hold an index & an address
     struct solutions {
@@ -23,7 +26,7 @@ contract SolnSquareVerifier is CustomERC721Token, Verifier {
     solutions[] private sol;
 
     // solutions array counter 
-    uint256 counter;
+    uint256 counter = 0;
 
     // TODO define a mapping to store unique solutions submitted
     mapping(address => solutions ) private store;
@@ -63,16 +66,13 @@ contract SolnSquareVerifier is CustomERC721Token, Verifier {
                     returns(bool)
     {
         require(store[msg.sender].Address == address(0), "The solution is not unique");
-        require(verifyTx(a, b, c, input),"Verification failed");
+        require(verifier.verifyTx(a, b, c, input),"Verification failed");
         addSolution(tokenId, msg.sender);
         super._mint(msg.sender, tokenId);
         return true;
     }
   
 }
-
-
-
 
 
 
