@@ -6,7 +6,7 @@ import './ERC721Mintable.sol';
 
 
 // TODO define another contract named SolnSquareVerifier that inherits from your ERC721Mintable class
-contract SolnSquareVerifier is CustomERC721Token, Verifier {
+contract SolnSquareVerifier is CustomERC721Token {
 
     constructor(address verifierAddress) public 
     {
@@ -44,7 +44,8 @@ contract SolnSquareVerifier is CustomERC721Token, Verifier {
                         public
                         returns(bool)
     {
-        sol[counter] = solutions(recievedIndex, recievedAddress);
+        //sol[counter] = solutions(recievedIndex, recievedAddress);
+        sol.push(solutions(recievedIndex, recievedAddress));
         store[msg.sender] = solutions(recievedIndex, recievedAddress);
         counter++;
         emit Added(recievedIndex, recievedAddress);
