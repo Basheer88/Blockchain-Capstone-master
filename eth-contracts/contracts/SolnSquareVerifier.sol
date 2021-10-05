@@ -8,12 +8,11 @@ import './ERC721Mintable.sol';
 // TODO define another contract named SolnSquareVerifier that inherits from your ERC721Mintable class
 contract SolnSquareVerifier is CustomERC721Token, Verifier {
 
-/*
-    constructor(address verifierAddress, string memory name, string memory symbol) CustomERC721Token(name, symbol) public 
+    constructor() public 
     {
-        verifierContract = Verifier(verifierAddress);
+        counter = 0;
     }
-*/
+
     // TODO define a solutions struct that can hold an index & an address
     struct solutions {
         uint256 index;
@@ -24,7 +23,7 @@ contract SolnSquareVerifier is CustomERC721Token, Verifier {
     solutions[] private sol;
 
     // solutions array counter 
-    uint256 counter = 0;
+    uint256 counter;
 
     // TODO define a mapping to store unique solutions submitted
     mapping(address => solutions ) private store;
