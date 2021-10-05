@@ -16,6 +16,18 @@ The capstone will build upon the knowledge you have gained in the course in orde
 # Setup
 
 docker run -v E:\Blockchain-Capstone-master\zokrates\code:/home/zokrates/code -ti zokrates/zokrates:0.4.6 /bin/bash
+cd code/square
+
+~/zokrates compile -i square.code
+
+~/zokrates setup
+
+~/zokrates compute-witness -a 3 9
+
+~/zokrates generate-proof
+
+~/zokrates export-verifier
+
 
 npm install --save  openzeppelin-solidity@2.2
 
