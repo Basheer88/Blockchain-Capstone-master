@@ -1,4 +1,6 @@
 // define a variable to import the <SolnSquareVerifier>
+//var ERC721MintableComplete = artifacts.require('CustomERC721Token');
+var SquareVerifier = artifacts.require("Verifier");
 var SolnSquareVerifier = artifacts.require('SolnSquareVerifier');
 
 contract('TestSolnSquareVerifier', accounts => {
@@ -13,23 +15,25 @@ contract('TestSolnSquareVerifier', accounts => {
         input: ["0x0000000000000000000000000000000000000000000000000000000000000009", "0x0000000000000000000000000000000000000000000000000000000000000001"]
     }
 
-    /*
+    
     // Before for each
-    beforeEach(async function () { 
-        this.contract = await SolnSquareVerifier.new({from: account_one});
+    beforeEach('setup environment', async function () { 
+        //this.ERC721 = await ERC721MintableComplete.new({from: owner});
+        this.verifier = await SquareVerifier.new(owner);
+        this.contract = await SolnSquareVerifier.new(this.verifier.address);
     })
-    */
+    
     // Test if a new solution can be added for contract - SolnSquareVerifier
     it('New solution can be added for contract', async function () {
-        let instance = await SolnSquareVerifier.deployed();
-        result = await instance.addSolution(1, owner, {from: owner});
+        //let instance = await SolnSquareVerifier.deployed();
+        let result = await this.contract.addSolution(1, owner, {from: owner});
         assert.equal(result, true, "Add solutions Failed");
     })
 
     // Test if an ERC721 token can be minted for contract - SolnSquareVerifier
     it('ERC721 token can be minted for contract', async function () {
-        let instance = await SolnSquareVerifier.deployed();
-        result = await instance.newMint(proof.a, proof.b, proof.c, proof.input, 2, {from: owner});
+        //let instance = await SolnSquareVerifier.deployed();
+        let result = await this.contract.newMint(proof.a, proof.b, proof.c, proof.input, 2, {from: owner});
         assert.equal(result, true, "token minted Failed");
     })
 })
