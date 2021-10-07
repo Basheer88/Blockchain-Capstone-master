@@ -1,0 +1,185 @@
+truffle(develop)> migrate --network rinkeby
+
+Compiling your contracts...
+===========================
+> Compiling .\contracts\ERC721Mintable.sol
+> Compiling .\contracts\Migrations.sol
+> Compiling .\contracts\Oraclize.sol
+> Compiling .\contracts\SolnSquareVerifier.sol
+> Compiling .\contracts\Verifier.sol
+> Compiling openzeppelin-solidity\contracts\drafts\Counters.sol
+> Compiling openzeppelin-solidity\contracts\math\SafeMath.sol
+> Compiling openzeppelin-solidity\contracts\token\ERC721\IERC721Receiver.sol
+> Compiling openzeppelin-solidity\contracts\utils\Address.sol
+> Compilation warnings encountered:
+
+    project:/contracts/Oraclize.sol:320:7: Warning: Unreachable code.
+      _networkID; // silence the warning and remain backwards compatible
+      ^--------^
+,project:/contracts/Oraclize.sol:373:7: Warning: Unreachable code.
+      _myid; _result; _proof; // Silence compiler warnings
+      ^--------------------^
+,project:/contracts/Oraclize.sol:371:5: Warning: Function state mutability can be restricted to pure
+    function __callback(bytes32 _myid, string memory _result, bytes memory _proof) public {
+    ^ (Relevant source part starts here and spans across multiple lines).
+
+> Artifacts written to E:\Blockchain-Capstone-master\eth-contracts\build\contracts
+> Compiled successfully using:
+   - solc: 0.5.5+commit.47a71e8f.Emscripten.clang
+
+
+
+Migrations dry-run (simulation)
+===============================
+> Network name:    'rinkeby-fork'
+> Network id:      4
+> Block gas limit: 29970676 (0x1c950f4)
+
+
+1_initial_migration.js
+======================
+
+   Deploying 'Migrations'
+   ----------------------
+   > block number:        9420608
+   > block timestamp:     1633567107
+   > account:             0xdA435609ac7b18277fd80801fEFf3e4068E2c1c9
+   > balance:             14.444995163995368319
+   > gas used:            208305 (0x32db1)
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00208305 ETH
+
+   -------------------------------------
+   > Total cost:          0.00208305 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Deploying 'Verifier'
+   --------------------
+   > block number:        9420610
+   > block timestamp:     1633567139
+   > account:             0xdA435609ac7b18277fd80801fEFf3e4068E2c1c9
+   > balance:             14.434586673995368319
+   > gas used:            1013486 (0xf76ee)
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.01013486 ETH
+
+
+   Deploying 'SolnSquareVerifier'
+   ------------------------------
+   > block number:        9420611
+   > block timestamp:     1633567252
+   > account:             0xdA435609ac7b18277fd80801fEFf3e4068E2c1c9
+   > balance:             14.405396843995368319
+   > gas used:            2918983 (0x2c8a47)
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02918983 ETH
+
+   -------------------------------------
+   > Total cost:          0.03932469 ETH
+
+
+Summary
+=======
+> Total deployments:   3
+> Final cost:          0.04140774 ETH
+
+
+
+
+
+Starting migrations...
+======================
+> Network name:    'rinkeby'
+> Network id:      4
+> Block gas limit: 29999943 (0x1c9c347)
+
+
+1_initial_migration.js
+======================
+
+   Deploying 'Migrations'
+   ----------------------
+   > transaction hash:    0x882bd332fef883973e7783c6ff82cc180fd6510b8a412e76aea1af154d69a36d
+   > Blocks: 2            Seconds: 17
+   > contract address:    0xCE300f11922AEf4F3096C030190999E3b8d3DD0D
+   > block number:        9420623
+   > block timestamp:     1633567342
+   > account:             0xdA435609ac7b18277fd80801fEFf3e4068E2c1c9
+   > balance:             14.444832163995368319
+   > gas used:            224605 (0x36d5d)
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00224605 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.00224605 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Deploying 'Verifier'
+   --------------------
+   > transaction hash:    0xe131be300ad6bd915c042b697a39fb94209cc4e44b98d0a9468cf2f4fe479ed6
+   > Blocks: 1            Seconds: 21
+   > contract address:    0xAc3D800015059Fa4788945C367Ec4194f944C44a
+   > block number:        9420626
+   > block timestamp:     1633567387
+   > account:             0xdA435609ac7b18277fd80801fEFf3e4068E2c1c9
+   > balance:             14.434239673995368319
+   > gas used:            1013486 (0xf76ee)
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.01013486 ETH
+
+
+   Deploying 'SolnSquareVerifier'
+   ------------------------------
+   > transaction hash:    0xbce19e75a9d102a8de13f432723ee89b089d49ee55c2624a2f255bed4c5eca31
+   > Blocks: 1            Seconds: 14
+   > contract address:    0x9fEb29Dba9aaFFC8d44081EF269039651722FFC6
+   > block number:        9420629
+   > block timestamp:     1633567432
+   > account:             0xdA435609ac7b18277fd80801fEFf3e4068E2c1c9
+   > balance:             14.403139843995368319
+   > gas used:            3109983 (0x2f745f)
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.03109983 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.04123469 ETH
+
+
+Summary
+=======
+> Total deployments:   3
+> Final cost:          0.04348074 ETH
+
+
+
+(node:13092) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 data listeners added to [Provider]. Use emitter.setMaxListeners() to increase limit
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13092) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 connect listeners added to [Provider]. Use emitter.setMaxListeners() to increase limit
+(node:13092) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 error listeners added to [Provider]. Use emitter.setMaxListeners() to increase limit
+(node:13092) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 close listeners added to [Provider]. Use emitter.setMaxListeners() to increase limit
+(node:13092) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 disconnect listeners added to [Provider]. Use emitter.setMaxListeners() to increase limit
+- Blocks: 0            Seconds: 0
+- Saving migration to chain.
+- Blocks: 0            Seconds: 0
+- Blocks: 0            Seconds: 0
+- Saving migration to chain.
+
+truffle(develop)>
