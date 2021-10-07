@@ -31,3 +31,13 @@ cd code/square
 
 npm install --save  openzeppelin-solidity@2.2
 
+
+# Migrate to rinkeby test net
+
+cd eth-contracts
+
+truffle develop
+
+compile
+
+migrate --network --rinkeby
