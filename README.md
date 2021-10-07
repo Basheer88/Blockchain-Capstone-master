@@ -6,13 +6,13 @@ The capstone will build upon the knowledge you have gained in the course in orde
 ### Dependencies
 **This project works with**
 1. **Install all required packages**
-
+```bash
 Truffle v5.4.13 (core: 5.4.13)
 Solidity v0.5.16 (solc-js)
 Node v16.10.0
 Web3.js v1.5.3
 npm 7.24.1
-
+```
 
 2. **Metamask: 5.3.1** - If you need to update Metamask just delete your Metamask extension and install it again.
 
@@ -31,22 +31,20 @@ npm install --save  truffle-hdwallet-provider
 
 ## Download
 download or get a clone of this repository
-
+```bash
 git clone https://github.com/Basheer88/Blockchain-Capstone-master.git
+```
 
 ## Zokrates 
+```bash
 docker run -v E:\Blockchain-Capstone-master\zokrates\code:/home/zokrates/code -ti zokrates/zokrates:0.4.6 /bin/bash
 cd code/square
-
 ~/zokrates compile -i square.code
-
 ~/zokrates setup
-
 ~/zokrates compute-witness -a 3 9
-
 ~/zokrates generate-proof
-
 ~/zokrates export-verifier
+```
 
 # Run and deploy locally
 ```bash
