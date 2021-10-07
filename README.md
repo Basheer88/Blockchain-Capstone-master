@@ -2,19 +2,39 @@
 
 The capstone will build upon the knowledge you have gained in the course in order to build a decentralized housing product. 
 
-# Project Resources
 
-* [Remix - Solidity IDE](https://remix.ethereum.org/)
-* [Visual Studio Code](https://code.visualstudio.com/)
-* [Truffle Framework](https://truffleframework.com/)
-* [Ganache - One Click Blockchain](https://truffleframework.com/ganache)
-* [Open Zeppelin ](https://openzeppelin.org/)
-* [Interactive zero knowledge 3-colorability demonstration](http://web.mit.edu/~ezyang/Public/graph/svg.html)
-* [Docker](https://docs.docker.com/install/)
-* [ZoKrates](https://github.com/Zokrates/ZoKrates)
+### Dependencies
+**This project works with**
+1. **Install all required packages**
 
-# Setup
+Truffle v5.4.13 (core: 5.4.13)
+Solidity v0.5.16 (solc-js)
+Node v16.10.0
+Web3.js v1.5.3
+npm 7.24.1
 
+
+2. **Metamask: 5.3.1** - If you need to update Metamask just delete your Metamask extension and install it again.
+
+
+3. **Ganache** 
+Intall from here (https://www.trufflesuite.com/ganache) - Make sure that your Ganache and Truffle configuration file have the same port.
+
+
+4. **Other mandatory packages**:
+```bash
+cd eth-contracts
+# install packages
+npm install --save  openzeppelin-solidity@2.2
+npm install --save  truffle-hdwallet-provider
+```
+
+## Download
+download or get a clone of this repository
+
+git clone https://github.com/Basheer88/Blockchain-Capstone-master.git
+
+## Zokrates 
 docker run -v E:\Blockchain-Capstone-master\zokrates\code:/home/zokrates/code -ti zokrates/zokrates:0.4.6 /bin/bash
 cd code/square
 
@@ -28,21 +48,28 @@ cd code/square
 
 ~/zokrates export-verifier
 
-
-npm install --save  openzeppelin-solidity@2.2
-
+# Run and deploy locally
+```bash
+cd eth-contracts
+truffle compile
+truffle migrate --rest
+```
 
 # Migrate to rinkeby test net
-
+```bash
 cd eth-contracts
-
 truffle develop
-
 compile
-
 migrate --network --rinkeby
+```
 
-rinkeby testnet url
+For testing run 
+Note : Ganachi should be working before compiling and running test
+```bash
+truffle test
+```
+
+# Rinkeby URL
 SolnSquareVerifier
 https://rinkeby.etherscan.io/tx/0xbce19e75a9d102a8de13f432723ee89b089d49ee55c2624a2f255bed4c5eca31
 
@@ -150,3 +177,14 @@ Token ID 50
 https://rinkeby.etherscan.io/tx/0x14a88060190cfbc91ee05fd30054ea1a57494332550c27511c1aff43d7e1a132
 
 
+
+# Project Resources
+
+* [Remix - Solidity IDE](https://remix.ethereum.org/)
+* [Visual Studio Code](https://code.visualstudio.com/)
+* [Truffle Framework](https://truffleframework.com/)
+* [Ganache - One Click Blockchain](https://truffleframework.com/ganache)
+* [Open Zeppelin ](https://openzeppelin.org/)
+* [Interactive zero knowledge 3-colorability demonstration](http://web.mit.edu/~ezyang/Public/graph/svg.html)
+* [Docker](https://docs.docker.com/install/)
+* [ZoKrates](https://github.com/Zokrates/ZoKrates)
