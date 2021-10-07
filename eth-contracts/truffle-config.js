@@ -23,7 +23,7 @@
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
- const mnemonic = "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat"
+ const mnemonic = "ring evidence next super cluster response sense number charge genius scheme erupt"
 
 module.exports = {
   /**
@@ -73,10 +73,11 @@ module.exports = {
     // Useful for deploying to a public test network.
     // NB: It's important to wrap the provider as a function.
     rinkeby: {
-       provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${infuraKey}`),
-       network_id: 4,       // Rinkeby's id
-       gas: 20000000000,        // Rinkeby has a lower block limit than mainnet
-       gasPrice: 30000000000
+      //networkCheckTimeout: 1000000,
+      provider: new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${infuraKey}`),
+      network_id: 4,       // Rinkeby's id
+      gas: 4500000,        // Rinkeby has a lower block limit than mainnet
+      gasPrice: 10000000000
     }
   
     // Useful for private networks
