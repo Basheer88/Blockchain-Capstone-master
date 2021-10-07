@@ -41,3 +41,11 @@ truffle develop
 compile
 
 migrate --network --rinkeby
+
+rinkeby testnet url
+SolnSquareVerifier
+https://rinkeby.etherscan.io/tx/0xbce19e75a9d102a8de13f432723ee89b089d49ee55c2624a2f255bed4c5eca31
+
+Verifier
+https://rinkeby.etherscan.io/tx/0xe131be300ad6bd915c042b697a39fb94209cc4e44b98d0a9468cf2f4fe479ed6
+
